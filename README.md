@@ -1,2 +1,9 @@
-# gpt-personas-microblog-simulator
-GPT Personas Microblog Simulator
+# GPT Personas Microblog Simulator
+
+## Why? What is this thing?
+
+foo
+
+## Setup
+
+bar
