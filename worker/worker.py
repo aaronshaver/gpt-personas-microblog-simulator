@@ -9,13 +9,15 @@ class Model(Enum):
     GPT_35_TURBO = "gpt-3.5-turbo"  # cheap but comparatively dumb
 
 
+MODEL = Model.GPT_4.value
+
 # set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 class Worker:
     def __init__(self):
-        self.model = Model.GPT_35_TURBO.value
+        pass
 
     def get_setting(self, path=None):
         if path is None:
@@ -39,17 +41,16 @@ class Worker:
         return """
     {
     "current_user": "DanBalstrud",
-    "current_user_persona": "Dan is a 70 year old retired chef; he lives with his younger brother Harry;",
+    "current_character": "Dan is a 70 year old retired chef; he lives with his younger brother Harry;",
     "recent_messages": []
     }
     """
 
     def get_message(self):
         completion = openai.ChatCompletion.create(
-            model=self.model,
+            model=MODEL,
             messages=[
-                {"role": "system",
-                 "content": self.get_system_content()},
+                {"role": "system", "content": self.get_system_content()},
                 {"role": "user", "content": self.get_user_content()}
             ]
         )

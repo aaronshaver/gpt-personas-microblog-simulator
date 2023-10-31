@@ -10,7 +10,7 @@ foo
 1. Using a virtual environment is recommended to ensure project dependencies don't conflict with your global Python setup.
    1. python -m venv openai-env
    1. Activate the virtual environment:
-      1. Windows: `openai-env\Scripts\activate` 
+      1. Windows: `openai-env\Scripts\activate`
       1. Unix or MacOS: `source openai-env/bin/activate`
    1. You should see the terminal / command line interface change slightly after you active the virtual environment, it should now show "openai-env" to the left of the cursor input section.
 1. `pip install -r requirements.txt` (TODO: this will probably just be in Dockerfile(s))
