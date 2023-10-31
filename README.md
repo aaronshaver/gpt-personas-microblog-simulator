@@ -15,3 +15,4 @@ foo
    1. You should see the terminal / command line interface change slightly after you active the virtual environment, it should now show "openai-env" to the left of the cursor input section.
 1. `pip install -r requirements.txt`
 1. Make sure you have an OpenAI API key on your system in some fashion: https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key
+1. Finally, run `whatever_command.py`
