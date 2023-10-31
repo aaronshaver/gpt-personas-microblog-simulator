@@ -9,12 +9,13 @@ class Model(Enum):
     GPT_35_TURBO = "gpt-3.5-turbo"  # cheap but comparatively dumb
 
 
+# set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 class Worker:
     def __init__(self):
-        pass
+        self.model = Model.GPT_35_TURBO.value
 
     def get_setting(self, path=None):
         if path is None:
@@ -26,8 +27,13 @@ class Worker:
             path = "./world/rules.txt"
         return read_file(path)
 
+    def get_tone(self, path=None):
+        if path is None:
+            path = "./world/tone.txt"
+        return read_file(path)
+
     def get_system_content(self):
-        return f"You shall respond per the following rules: '{self.get_rules()}'. The setting shall be: '{self.get_setting()}' The tone of all the text in all the responses should be: ''."
+        return f"You shall respond using these rules: '{self.get_rules()}'. The setting shall be: '{self.get_setting()}'. The tone of all text should be: '{self.get_tone()}'."
 
     def get_user_content(self):
         return """
@@ -40,7 +46,7 @@ class Worker:
 
     def get_message(self):
         completion = openai.ChatCompletion.create(
-            model=Model.GPT_35_TURBO.value,
+            model=self.model,
             messages=[
                 {"role": "system",
                  "content": self.get_system_content()},

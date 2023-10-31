@@ -15,6 +15,10 @@ class Case(unittest.TestCase):
         result = self.worker.get_rules()
         self.assertTrue(len(result) > 0)
 
+    def test_get_rules(self):
+        result = self.worker.get_tone()
+        self.assertTrue(len(result) > 0)
+
     def test_get_system_content(self):
         result = self.worker.get_system_content()
         self.assertTrue("tone" in result)
