@@ -1,15 +1,14 @@
 import unittest
-from worker.worker import Worker
+from io_helper.io_helper import read_file
 import os
 
 
 class Case(unittest.TestCase):
 
     def setUp(self):
-        self.worker = Worker()
         self.dir_path = os.path.dirname(os.path.abspath(__file__))
 
     def test_get_setting_returns_a_string(self):
         path = os.path.join(self.dir_path, "test_setting.txt")
-        setting = self.worker.get_setting(path)
-        self.assertEqual(setting, "this is a test setting\nit is a cool setting")
+        result = read_file(path)
+        self.assertEqual(result, "this is a test setting\nit is a cool setting")
