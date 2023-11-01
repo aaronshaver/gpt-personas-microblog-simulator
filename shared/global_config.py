@@ -5,10 +5,10 @@ import os
 class Model(Enum):
     GPT_4 = "gpt-4"  # more expensive but more capable
     GPT_35_TURBO = "gpt-3.5-turbo"  # cheaper but makes dumb mistakes
-MODEL = Model.GPT_35_TURBO.value
+MODEL = Model.GPT_4.value
 
 # percent chance current user replies to recent messages
-REPLY_CHANCE = 0.99
+REPLY_CHANCE = 0.99  # TODO: need to implement this...
 
 # set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

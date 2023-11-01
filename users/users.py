@@ -25,7 +25,7 @@ class Users:
 
             user_pairs[user_name] = user_background
 
-        recent_messages = ['{"user_name": "BoffDoff", "message": "I just got boffed, srsly"}']
+        recent_messages = []
 
         random_user_name = random.choice(list(user_pairs.keys()))
 
