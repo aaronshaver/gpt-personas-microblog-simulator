@@ -1,15 +1,8 @@
 import openai
 from io_helper.io_helper import read_file
 import os
-from enum import Enum
+from shared import global_config
 
-
-class Model(Enum):
-    GPT_4 = "gpt-4"  # more expensive but more capable
-    GPT_35_TURBO = "gpt-3.5-turbo"  # cheaper but makes dumb mistakes
-
-
-MODEL = Model.GPT_35_TURBO.value
 
 # set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -50,7 +43,7 @@ class Worker:
 
     def get_message(self):
         completion = openai.ChatCompletion.create(
-            model=MODEL,
+            model=global_config.MODEL,
             messages=[
                 {"role": "system", "content": self.get_system_content()},
                 {"role": "user", "content": self.get_user_content()}
