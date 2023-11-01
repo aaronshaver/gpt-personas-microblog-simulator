@@ -1,5 +1,5 @@
 import openai
-from io_helper.io_helper import read_file
+from io_helper.io_helper import file_to_string
 from shared import global_config
 from users.users import Users
 
@@ -12,17 +12,17 @@ class Worker:
     def get_setting(self, path=None):
         if path is None:
             path = "./world/setting.txt"
-        return read_file(path)
+        return file_to_string(path)
 
     def get_rules(self, path=None):
         if path is None:
             path = "./world/rules.txt"
-        return read_file(path)
+        return file_to_string(path)
 
     def get_tone(self, path=None):
         if path is None:
             path = "./world/tone.txt"
-        return read_file(path)
+        return file_to_string(path)
 
     def get_system_content(self):
         return f"You shall respond using these rules: '{self.get_rules()}'. The setting shall be: '{self.get_setting()}'. The tone of all text should be: '{self.get_tone()}'."
@@ -32,7 +32,7 @@ class Worker:
             model=global_config.MODEL,
             messages=[
                 {"role": "system", "content": self.get_system_content()},
-                {"role": "user", "content": self.users.get_user_content()}
+                {"role": "user", "content": self.users.get_user_prompt()}
             ]
         )
         return completion.choices[0].message
