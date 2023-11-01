@@ -1,4 +1,5 @@
 from enum import Enum
+import os
 
 # OpenAI model
 class Model(Enum):
@@ -8,3 +9,6 @@ MODEL = Model.GPT_35_TURBO.value
 
 # percent chance current user replies to recent messages
 REPLY_CHANCE = 0.99
+
+# set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

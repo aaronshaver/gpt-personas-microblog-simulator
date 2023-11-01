@@ -1,16 +1,13 @@
 import openai
 from io_helper.io_helper import read_file
-import os
 from shared import global_config
-
-
-# set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
-openai.api_key = os.getenv("OPENAI_API_KEY")
+from users.users import Users
 
 
 class Worker:
     def __init__(self):
-        pass
+        self.users = Users()
+        openai.api_key = global_config.OPENAI_API_KEY
 
     def get_setting(self, path=None):
         if path is None:
@@ -30,23 +27,12 @@ class Worker:
     def get_system_content(self):
         return f"You shall respond using these rules: '{self.get_rules()}'. The setting shall be: '{self.get_setting()}'. The tone of all text should be: '{self.get_tone()}'."
 
-    # this defines the dynamic content that serves to shape the next new message
-    # and includes user name, user background, recent messages (may be empty)
-    def get_user_content(self):
-        return """
-    {
-    "user_name": "DanBalstrud",
-    "user_background": "Dan is a 70 year old retired chef; he lives with his younger brother Harry;",
-    "recent_messages": []
-    }
-    """
-
     def get_message(self):
         completion = openai.ChatCompletion.create(
             model=global_config.MODEL,
             messages=[
                 {"role": "system", "content": self.get_system_content()},
-                {"role": "user", "content": self.get_user_content()}
+                {"role": "user", "content": self.users.get_user_content()}
             ]
         )
         return completion.choices[0].message
