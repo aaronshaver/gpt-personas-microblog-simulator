@@ -2,6 +2,8 @@ import openai
 from io_helper.io_helper import file_to_string
 from shared import global_config
 from users.users import Users
+import sqlite3
+import json
 
 
 class Worker:
@@ -28,11 +30,24 @@ class Worker:
         return f"You shall respond using these rules: '{self.get_rules()}'. The setting shall be: '{self.get_setting()}'. The tone of all text should be: '{self.get_tone()}'."
 
     def get_message(self):
+        user_prompt = self.users.get_user_prompt()
         completion = openai.ChatCompletion.create(
             model=global_config.MODEL,
             messages=[
                 {"role": "system", "content": self.get_system_content()},
-                {"role": "user", "content": self.users.get_user_prompt()}
+                {"role": "user", "content": user_prompt}
             ]
         )
-        return completion.choices[0].message
+        message = completion.choices[0].message.content
+
+        data =json.loads(user_prompt)
+
+        conn = sqlite3.connect(global_config.DB_NAME)
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO recent_messages (user_name, message) VALUES (?, ?)", (data['user_name'], message))
+        conn.commit()
+        cursor.execute("SELECT * FROM recent_messages ORDER BY timestamp DESC")
+        for row in cursor.fetchall():
+            print(row)
+
+        return message

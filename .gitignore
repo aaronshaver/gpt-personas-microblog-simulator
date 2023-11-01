@@ -1,3 +1,4 @@
+*.db
 .vscode/
 .idea
 openai-env/

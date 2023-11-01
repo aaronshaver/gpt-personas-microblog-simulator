@@ -12,3 +12,6 @@ REPLY_CHANCE = 0.99  # TODO: need to implement this...
 
 # set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+# arbitrary database name
+DB_NAME = 'gpt_microblog.db'

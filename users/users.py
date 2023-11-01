@@ -25,10 +25,10 @@ class Users:
 
             user_pairs[user_name] = user_background
 
-        # TODO obviously need to filter out self / current user from this...
-        recent_messages = [{"user_name": "Karl2002", "message": "It's been months since we lost contact with Earth. The leaders of this colony won't do anything to try and reconnect."}]
-
         random_user_name = random.choice(list(user_pairs.keys()))
+
+        # TODO user WHERE clause in SQL to say != current_user
+        recent_messages = [{"user_name": "Karl2002", "message": "It's been months since we lost contact with Earth. The leaders of this colony won't do anything to try and reconnect."}]
 
         data = {
             "user_name": random_user_name,
