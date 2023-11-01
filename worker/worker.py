@@ -37,6 +37,8 @@ class Worker:
     def get_system_content(self):
         return f"You shall respond using these rules: '{self.get_rules()}'. The setting shall be: '{self.get_setting()}'. The tone of all text should be: '{self.get_tone()}'."
 
+    # this defines the dynamic content that serves to shape the next new message
+    # and includes user name, user background, recent messages (may be empty)
     def get_user_content(self):
         return """
     {
