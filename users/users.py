@@ -1,6 +1,8 @@
 import json
 import os
 import io_helper.io_helper as io_helper
+import random
+
 
 class Users:
     def __init__(self, path=None):
@@ -18,19 +20,18 @@ class Users:
         user_pairs = {}
         for file_name in file_names:
             user_name = file_name.split('.')[0]
-            user_background = io_helper.file_to_string(os.path.join(users_dir, file_name))
+            user_background = io_helper.file_to_string(
+                os.path.join(users_dir, file_name))
 
             user_pairs[user_name] = user_background
 
-        recent_messages = ["message1", "message2"]
+        recent_messages = ['{"user_name": "BoffDoff", "message": "I just got boffed, srsly"}']
 
-        for k, v in user_pairs.items():
-            user_name = k
-            user_background = v
+        random_user_name = random.choice(list(user_pairs.keys()))
 
         data = {
-            "user_name": user_name,
-            "user_background": user_background,
+            "user_name": random_user_name,
+            "user_background": user_pairs[random_user_name],
             "recent_messages": recent_messages
         }
 
