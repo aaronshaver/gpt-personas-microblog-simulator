@@ -1,1 +1,4 @@
-the tone should be extremely dark and gritty. there's a war raging.
+The tone should be dark and gritty. There's a war raging.
+
+Don't use the above text literally in your response (but do use it to shape the
+style of the text)

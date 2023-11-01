@@ -6,10 +6,10 @@ from enum import Enum
 
 class Model(Enum):
     GPT_4 = "gpt-4"  # more expensive but more capable
-    GPT_35_TURBO = "gpt-3.5-turbo"  # cheap but comparatively dumb
+    GPT_35_TURBO = "gpt-3.5-turbo"  # cheaper but makes dumb mistakes
 
 
-MODEL = Model.GPT_4.value
+MODEL = Model.GPT_35_TURBO.value
 
 # set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -40,8 +40,8 @@ class Worker:
     def get_user_content(self):
         return """
     {
-    "current_user": "DanBalstrud",
-    "current_character": "Dan is a 70 year old retired chef; he lives with his younger brother Harry;",
+    "user_name": "DanBalstrud",
+    "user_background": "Dan is a 70 year old retired chef; he lives with his younger brother Harry;",
     "recent_messages": []
     }
     """
