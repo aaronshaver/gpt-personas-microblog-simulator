@@ -28,12 +28,12 @@ class Users:
         random_user_name = random.choice(list(user_pairs.keys()))
 
         # TODO user WHERE clause in SQL to say != current_user
-        recent_messages = []
+        recent_message = []
 
         data = {
             "user_name": random_user_name,
             "user_background": user_pairs[random_user_name],
-            "recent_messages": recent_messages
+            "recent_message": recent_message
         }
 
         return json.dumps(data)

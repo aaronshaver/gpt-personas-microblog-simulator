@@ -7,7 +7,7 @@ if __name__ == "__main__":
     conn = sqlite3.connect(global_config.DB_NAME)
     cursor = conn.cursor()
     cursor.execute('''
-    CREATE TABLE IF NOT EXISTS recent_messages (
+    CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_name TEXT NOT NULL,
         message TEXT NOT NULL,
@@ -18,4 +18,8 @@ if __name__ == "__main__":
     conn.close()
 
     worker = Worker()
+    print(worker.get_message())
+    print(worker.get_message())
+    print(worker.get_message())
+    print(worker.get_message())
     print(worker.get_message())

@@ -44,10 +44,12 @@ class Worker:
 
         conn = sqlite3.connect(global_config.DB_NAME)
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO recent_messages (user_name, message) VALUES (?, ?)", (data['user_name'], message))
+        cursor.execute("INSERT INTO messages (user_name, message) VALUES (?, ?)", (data['user_name'], message))
         conn.commit()
-        cursor.execute("SELECT * FROM recent_messages ORDER BY timestamp DESC")
+        cursor.execute("SELECT * FROM messages ORDER BY timestamp DESC")
+        print('------------------------------------------------')
         for row in cursor.fetchall():
             print(row)
+        print('------------------------------------------------')
 
         return message

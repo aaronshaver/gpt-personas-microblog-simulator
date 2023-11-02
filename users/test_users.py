@@ -15,4 +15,4 @@ class Case(unittest.TestCase):
         result = self.users.get_user_prompt()
         self.assertIn('"user_name"', result)
         self.assertIn('"user_background"', result)
-        self.assertIn('"recent_messages"', result)
+        self.assertIn('"recent_message"', result)
