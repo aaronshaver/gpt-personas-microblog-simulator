@@ -36,4 +36,5 @@ class Users:
             "recent_message": recent_message
         }
 
-        return json.dumps(data)
+        s = json.dumps(data)
+        return io_helper.minify_string(s)

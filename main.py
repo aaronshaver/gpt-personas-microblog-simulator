@@ -19,7 +19,3 @@ if __name__ == "__main__":
 
     worker = Worker()
     print(worker.get_message())
-    print(worker.get_message())
-    print(worker.get_message())
-    print(worker.get_message())
-    print(worker.get_message())
