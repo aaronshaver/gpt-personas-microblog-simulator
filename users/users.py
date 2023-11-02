@@ -56,6 +56,5 @@ class Users:
             return ""
 
         random_message = random.choice(messages)
-        print(random_message)
 
         return {"user_name": random_message[1], "message": random_message[2]}

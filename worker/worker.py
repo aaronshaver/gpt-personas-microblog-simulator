@@ -54,5 +54,5 @@ class Worker:
             "INSERT INTO messages (user_name, message) VALUES (?, ?)", (data['current_user'], message))
         conn.commit()
 
-        print(f"current user_name:\n{data['current_user']}")
+        print(f"current_user: {data['current_user']}")
         return message

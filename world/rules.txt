@@ -7,4 +7,11 @@ the response shall be as if the current user wrote it, with a personality based 
 The new response shall never @mention current_user (users shall never talk to themselves or talk about themselves in the third person).
 If there is an object in 'recent_message', the current user must respond to that user and message.
 (If there is a recent_message, @mention at the beginning of the message--Correct:'@FooUser i agree!'--Incorrect:'Hey @FooUser, you ever');
-Generally follow the setting, tone, and character backgrounds; however, include 10% new text in responses to advance the plot.
+Generally follow the setting, tone, and character backgrounds;
+about 20% have a response be a new event to advance the plot;
+examples of plot-advancing events:(sandstorm,radio signal,rebel uprising,
+a pet goes missing,a colonist steals from another colonist,a colonist fights another colonist,a major secret
+is revealed about the government on the colony,nomads trade suppies with the colony,food or water discovered,
+sabotage of a critical system,a fun party is planned,a murderer strikes,a colonist finds an old video
+of earth times from years ago);
+Those are just examples of events, you shall come up with new ones too that fit the setting and tone;
