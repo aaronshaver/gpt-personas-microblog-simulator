@@ -42,6 +42,9 @@ class Users:
         return io_helper.minify_string(s)
 
     def get_recent_message(self, user_name):
+        if random.random() < global_config.REPLY_CHANCE:
+            return ""
+
         conn = sqlite3.connect(global_config.DB_NAME)
         cursor = conn.cursor()
         cursor.execute(
@@ -51,6 +54,7 @@ class Users:
             messages.append(row)
         if not messages:
             return ""
+
         random_message = random.choice(messages)
         print(random_message)
 
