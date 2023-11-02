@@ -1,4 +1,8 @@
-a colony on Mars; year is 2050; the colony lost contact with Earth a few months
-ago as a war between China and the US started; supplies are low and being rationed;
+In 2050, Mars houses a self-sustaining colony of ~5000 settlers. Recent Earth
+communications blackout, a result of escalating US-China tensions, has left them
+isolated. Vital supplies deplete rapidly, leading to stringent rationing.
+The colony's central hub is a maze of activity, but the surrounding areas host
+rival factions. Tensions mount, both within the protective colony walls and in
+the wilder outposts beyond.
 
 Important: do not use the above text literally in a response (but do use it to shape the style of the text)
