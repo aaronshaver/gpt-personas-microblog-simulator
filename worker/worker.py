@@ -51,8 +51,8 @@ class Worker:
         conn = sqlite3.connect(global_config.DB_NAME)
         cursor = conn.cursor()
         cursor.execute(
-            "INSERT INTO messages (user_name, message) VALUES (?, ?)", (data['user_name'], message))
+            "INSERT INTO messages (user_name, message) VALUES (?, ?)", (data['current_user'], message))
         conn.commit()
 
-        print(f"current user_name:\n{data['user_name']}")
+        print(f"current user_name:\n{data['current_user']}")
         return message

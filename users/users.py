@@ -33,7 +33,7 @@ class Users:
         recent_message = self.get_recent_message(random_user_name)
 
         data = {
-            "user_name": random_user_name,
+            "current_user": random_user_name,
             "user_background": user_pairs[random_user_name],
             "recent_message": recent_message
         }
