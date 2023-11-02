@@ -1,5 +1,4 @@
 import openai
-import io_helper
 from io_helper.io_helper import file_to_string, minify_string
 from shared import global_config
 from users.users import Users
@@ -33,6 +32,7 @@ class Worker:
         return minify_string(s)
 
     def get_message(self):
+        # prepare system and user prompts
         user_prompt = self.users.get_user_prompt()
         messages = [
             {"role": "system", "content": self.get_system_content()},
@@ -40,20 +40,19 @@ class Worker:
         ]
         completion = openai.ChatCompletion.create(
             model=global_config.MODEL,
-            messages=messages)
+            messages=messages
+        )
+
+        # prepare data
+        data = json.loads(user_prompt)
         message = completion.choices[0].message.content
 
-        data = json.loads(user_prompt)
-
+        # write message to database
         conn = sqlite3.connect(global_config.DB_NAME)
         cursor = conn.cursor()
         cursor.execute(
             "INSERT INTO messages (user_name, message) VALUES (?, ?)", (data['user_name'], message))
         conn.commit()
-        cursor.execute("SELECT * FROM messages ORDER BY timestamp DESC")
-        print('------------------------------------------------')
-        for row in cursor.fetchall():
-            print(row)
-        print('------------------------------------------------')
 
+        print(f"current user_name:\n{data['user_name']}")
         return message
