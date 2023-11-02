@@ -27,6 +27,7 @@ def minify_string(s):
 def create_messages_table():
     conn = sqlite3.connect(global_config.DB_NAME)
     cursor = conn.cursor()
+
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,5 +36,10 @@ def create_messages_table():
         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
     )
     ''')
+
+    cursor.execute('''
+    CREATE INDEX IF NOT EXISTS idx_timestamp ON messages (timestamp DESC)
+    ''')
+
     conn.commit()
     conn.close()
