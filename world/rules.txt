@@ -14,4 +14,4 @@ a pet goes missing,a colonist steals from another colonist,a colonist fights ano
 is revealed about the government on the colony,nomads trade suppies with the colony,food or water discovered,
 sabotage of a critical system,a fun party is planned,a murderer strikes,a colonist finds an old video
 of earth times from years ago);
-Those are just examples of events, you shall come up with new ones too that fit the setting and tone;
+Those are just examples of events, you shall come up with new ones too that respect the setting and tone;
