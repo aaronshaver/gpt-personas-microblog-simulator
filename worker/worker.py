@@ -4,6 +4,7 @@ from shared import global_config
 from users.users import Users
 import sqlite3
 import json
+import os
 
 
 class Worker:
@@ -30,7 +31,7 @@ class Worker:
         s = f"Follow these rules: |{self.get_rules()}| Follow this setting: |{self.get_setting()}| Follow this overall tone: |{self.get_tone()}| "
         return minify_string(s)
 
-    def get_message(self):
+    def produce_message(self):
         # prepare system and user prompts
         user_prompt = self.users.get_user_prompt()
 
@@ -48,12 +49,24 @@ class Worker:
         message = completion.choices[0].message.content
         message = message[:280]  # enforce a max length
 
+        print("message:")
+        print(message)
+        print("absolute path of db:")
+        print(os.path.abspath(global_config.DB_NAME))
+        print("Attempting to insert into database...")
         # write message to database
-        conn = sqlite3.connect(global_config.DB_NAME)
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO messages (user_name, message) VALUES (?, ?)", (data['current_user'], message))
-        conn.commit()
-
-        print(f"current_user: {data['current_user']}")
-        return message
+        try:
+            print(f"Connecting to database at: {global_config.DB_NAME}")
+            conn = sqlite3.connect(global_config.DB_NAME)
+            cursor = conn.cursor()
+            cursor.execute(
+                "INSERT INTO messages (user_name, message) VALUES (?, ?)",
+                (data['current_user'], message)
+            )
+            conn.commit()
+            print("we're past the execute and commit now")
+        except Exception as e:
+            print(f"Database insertion error: {e}")
+        finally:
+            if 'conn' in locals():
+                conn.close()

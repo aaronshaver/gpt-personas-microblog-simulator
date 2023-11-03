@@ -1,0 +1,21 @@
+FROM python:3.12
+
+WORKDIR /app
+ENV PYTHONPATH=.
+
+COPY requirements.txt requirements.txt
+
+RUN pip install -r requirements.txt
+
+COPY ./io_helper /io_helper
+COPY ./shared /shared
+COPY ./templates /templates
+COPY ./users /users
+COPY ./worker /worker
+COPY ./world /world
+COPY ./app.py app.py
+
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=development
+# 0.0.0.0 allows access outside the Docker container, including from local host
+CMD ["flask", "run", "--host=0.0.0.0"]

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <title>Messages</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>User Name</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for message in messages %}
+            <tr>
+                <td>{{ message.timestamp }}</td>
+                <td>{{ message.user_name }}</td>
+                <td>{{ message.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
