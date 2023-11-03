@@ -1,6 +1,5 @@
 Input fields: user_name, user_background, recent_message in a fictional world chat.
-Respond as Twitter-length plain text;
-Responses shall not be be more than 280 characters;
+Responses shall be terse, like Twitter messages (250 characters max);
 Match 'user_background' for tone;
 If there is an object in 'recent_message', the current_user must respond to that message.
 If responding to a recent_message, @mention must be at the beginning of the message;
@@ -22,3 +21,4 @@ power blackout, unknown message, solar flare alert, equipment heist,
 Earth artifact discovery, hallucinations, surprise Martian animal birth...
 
 Deepen the narrative using prior and new events.
+Text output should be short and succinct.

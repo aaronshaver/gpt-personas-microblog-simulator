@@ -33,6 +33,7 @@ class Worker:
     def get_message(self):
         # prepare system and user prompts
         user_prompt = self.users.get_user_prompt()
+
         messages = [
             {"role": "system", "content": self.get_system_content()},
             {"role": "user", "content": user_prompt}
