@@ -8,6 +8,6 @@ if __name__ == "__main__":
     worker = Worker()
 
     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-    for i in range(20):
+    for i in range(1):
         print(worker.get_message())
         print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
