@@ -27,8 +27,7 @@ class Worker:
         return file_to_string(path)
 
     def get_system_content(self):
-        s = f"You shall respond using these rules: '{self.get_rules()}'. The setting shall be: '{
-            self.get_setting()}'. The tone of all text should be: '{self.get_tone()}'."
+        s = f"Follow these rules: |{self.get_rules()}| Follow this setting: |{self.get_setting()}| Follow this overall tone: |{self.get_tone()}| "
         return minify_string(s)
 
     def get_message(self):
@@ -46,6 +45,7 @@ class Worker:
         # prepare data
         data = json.loads(user_prompt)
         message = completion.choices[0].message.content
+        message = message[:250]  # enforce a max length
 
         # write message to database
         conn = sqlite3.connect(global_config.DB_NAME)
