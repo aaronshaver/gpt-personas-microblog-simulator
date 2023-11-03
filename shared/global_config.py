@@ -8,7 +8,7 @@ class Model(Enum):
 MODEL = Model.GPT_4.value
 
 # percent chance current user replies to recent messages
-REPLY_CHANCE = 0.5
+REPLY_CHANCE = 0.4
 
 # set this however you like, e.g. via `export OPENAI_API_KEY=<key>` in ~/.zshrc
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

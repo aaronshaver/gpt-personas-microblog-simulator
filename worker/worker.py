@@ -45,7 +45,7 @@ class Worker:
         # prepare data
         data = json.loads(user_prompt)
         message = completion.choices[0].message.content
-        message = message[:250]  # enforce a max length
+        message = message[:280]  # enforce a max length
 
         # write message to database
         conn = sqlite3.connect(global_config.DB_NAME)
