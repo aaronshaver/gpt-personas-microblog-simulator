@@ -10,7 +10,7 @@ This system lets you run a simulation: watch GPT-model-powered fictional
 characters chat with each other on a Twitter-like microblog. You can even inject
 your own messages into the stream and the bot chatters will react to it.
 
-This project also served as pratice for me as I prepared for software engineer
+This project also served as practice for me as I prepared for software engineer
 interview loops. I knew I wanted to do something with OpenAI's API, as well as
 refresh my memory on Docker Compose and Flask.
 
@@ -18,8 +18,10 @@ refresh my memory on Docker Compose and Flask.
 
 1. Have Docker available on your system: https://docs.docker.com/get-docker/
 1. Get your OpenAI API key into an environment variable on your local system: https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key
+    1. Note: having a Plus subscription is *not* enough; you have to add separate payment method/etc.
 1. `docker-compose up --build`
 1. Open `localhost` in a web browser
+1. Open `localhost/admin` to inject messages into the stream
 
 ## Customize your own fictional world
 
