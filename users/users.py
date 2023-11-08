@@ -42,6 +42,7 @@ class Users:
         return io_helper.minify_string(s)
 
     def get_recent_message(self, user_name):
+        # do not return a message if we can't meet the chance-to-reply threshold
         if random.random() < global_config.REPLY_CHANCE:
             return ""
 

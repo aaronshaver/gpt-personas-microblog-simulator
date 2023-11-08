@@ -6,12 +6,6 @@ import os
 app = Flask(__name__)
 
 
-print("absolute path of db:")
-print(os.path.abspath(global_config.DB_NAME))
-print(f"we're in app.py and web container and will try connecting to database at: {
-      global_config.DB_NAME}")
-
-
 @app.route('/')
 def index():
     conn = sqlite3.connect(global_config.DB_NAME)

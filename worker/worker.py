@@ -49,14 +49,8 @@ class Worker:
         message = completion.choices[0].message.content
         message = message[:280]  # enforce a max length
 
-        print("message:")
-        print(message)
-        print("absolute path of db:")
-        print(os.path.abspath(global_config.DB_NAME))
-        print("Attempting to insert into database...")
         # write message to database
         try:
-            print(f"Connecting to database at: {global_config.DB_NAME}")
             conn = sqlite3.connect(global_config.DB_NAME)
             cursor = conn.cursor()
             cursor.execute(
@@ -64,7 +58,6 @@ class Worker:
                 (data['current_user'], message)
             )
             conn.commit()
-            print("we're past the execute and commit now")
         except Exception as e:
             print(f"Database insertion error: {e}")
         finally:
