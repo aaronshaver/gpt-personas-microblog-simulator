@@ -8,7 +8,7 @@ services:
     ports:
       - "80:5000" # Flask's default is 5000
     volumes:
-      - db-data:/app
+      - db-data:/data
 
   worker:
     build:
@@ -17,7 +17,7 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
-      - db-data:/app
+      - db-data:/data
 
 volumes:
   db-data:

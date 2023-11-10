@@ -40,7 +40,6 @@ class Worker:
 
         Returns: nothing
         """
-        # prepare system and user prompts
         user_prompt = self.users.get_user_prompt()
         s = json.dumps(user_prompt)
         json_string_user_prompt = minify_string(s)

@@ -14,7 +14,7 @@ REPLY_CHANCE = 0.4
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # arbitrary database name
-DB_NAME = 'gpt_microblog.db'
+DB_NAME = 'database.db'
 
 MAX_MESSAGES = 100
 SECONDS_BETWEEN_MESSAGES = 60
