@@ -13,9 +13,6 @@ class Case(unittest.TestCase):
         self.assertIn('current_user', result)
         self.assertTrue(result['current_user'] in ['Bill', 'Jill'])
         self.assertIn('current_user_background', result)
-        print()
-        print(result['current_user_background'])
-        print()
         self.assertTrue(result['current_user_background'] in ['Bill is a pretty cool dude', 'Jill is a tall person'])
 
     def test_get_user_content_has_all_fields(self):

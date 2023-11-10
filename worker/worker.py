@@ -47,7 +47,6 @@ class Worker:
         )
 
         # prepare data
-        data = json.loads(user_prompt)
         message = completion.choices[0].message.content
         message = message[:280]  # enforce a max length
 
@@ -57,7 +56,7 @@ class Worker:
             cursor = conn.cursor()
             cursor.execute(
                 "INSERT INTO messages (user_name, message, reply_to_user, reply_to_message) VALUES (?, ?, ?, ?)",
-                (data['current_user'], message, user_prompt["reply_to_user"], user_prompt["reply_to_message"])
+                (user_prompt['current_user'], message, user_prompt["reply_to_user"], user_prompt["reply_to_message"])
             )
             conn.commit()
         except Exception as e:
