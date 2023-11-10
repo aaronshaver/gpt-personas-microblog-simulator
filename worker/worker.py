@@ -8,7 +8,7 @@ import json
 
 class Worker:
     def __init__(self):
-        client = OpenAI(api_key=global_config.OPENAI_API_KEY)
+        self.client = OpenAI(api_key=global_config.OPENAI_API_KEY)
         self.users = Users()
 
     def get_setting(self, path=None):
