@@ -35,11 +35,10 @@ class Users:
 
         data = {
             "current_user": random_user_name,
-            "user_background": user_pairs[random_user_name],
+            "current_user_background": user_pairs[random_user_name],
             "reply_to_user": "" if not recent_message else recent_message["reply_to_user"],
             "reply_to_message": "" if not recent_message else recent_message["reply_to_message"],
         }
-
         return data
 
     def get_recent_message(self, user_name):

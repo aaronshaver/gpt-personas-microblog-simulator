@@ -12,12 +12,15 @@ class Case(unittest.TestCase):
         result = self.users.get_user_prompt()
         self.assertIn('current_user', result)
         self.assertTrue(result['current_user'] in ['Bill', 'Jill'])
-        self.assertIn('user_background', result)
-        self.assertTrue(result['user_background'] in ['Bill is a pretty cool dude', 'Jill is a tall person'])
+        self.assertIn('current_user_background', result)
+        print()
+        print(result['current_user_background'])
+        print()
+        self.assertTrue(result['current_user_background'] in ['Bill is a pretty cool dude', 'Jill is a tall person'])
 
     def test_get_user_content_has_all_fields(self):
         result = self.users.get_user_prompt()
         self.assertIn('current_user', result)
-        self.assertIn('user_background', result)
+        self.assertIn('current_user_background', result)
         self.assertIn('reply_to_user', result)
         self.assertIn('reply_to_message', result)
