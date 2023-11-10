@@ -13,7 +13,8 @@ class Users:
             self.path = "../world/users/"
 
     # this defines the dynamic content that shapes the next new message
-    # and includes user name, user background, recent messages (may be empty)
+    # and includes user name, user background, recent message info (which may be
+    # empty)
     def get_user_prompt(self):
         current_dir = os.path.dirname(os.path.abspath(__file__))
         users_dir = os.path.join(current_dir, self.path)
@@ -32,6 +33,7 @@ class Users:
 
         recent_message = self.get_recent_message(random_user_name)
 
+
         data = {
             "current_user": random_user_name,
             "user_background": user_pairs[random_user_name],
@@ -42,6 +44,15 @@ class Users:
         return io_helper.minify_string(s)
 
     def get_recent_message(self, user_name):
+        """
+        grabs a recent message from storage that does not match the current (i.e.
+        speaking) user so that current user can potentially reply to it
+
+        user_name (string): the current user about to post a message
+
+        Returns:
+        JSON string if message available, or empty string otherwise
+        """
         # do not return a message if we can't meet the chance-to-reply threshold
         if random.random() < global_config.REPLY_CHANCE:
             return ""
