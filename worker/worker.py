@@ -31,7 +31,15 @@ class Worker:
         s = f"Follow these rules: |{self.get_rules()}| Follow this setting: |{self.get_setting()}| Follow this overall tone: |{self.get_tone()}| "
         return minify_string(s)
 
+    # TODO: refactor this function; it's doing way too much and is hard to test
     def produce_message(self):
+        """
+        forms the system and user content message array which serves as a prompt
+        to the OpenAI model; calls the OpenAI API; writes the message the API
+        returns to storage along with metadata
+
+        Returns: nothing
+        """
         # prepare system and user prompts
         user_prompt = self.users.get_user_prompt()
         s = json.dumps(user_prompt)
@@ -46,11 +54,11 @@ class Worker:
             messages=messages
         )
 
-        # prepare data
+        # prepare message for storage
         message = completion.choices[0].message.content
         message = message[:280]  # enforce a max length
 
-        # write message to database
+        # write message to storage
         try:
             conn = sqlite3.connect(global_config.DB_NAME)
             cursor = conn.cursor()
