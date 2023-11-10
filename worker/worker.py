@@ -34,10 +34,12 @@ class Worker:
     def produce_message(self):
         # prepare system and user prompts
         user_prompt = self.users.get_user_prompt()
+        s = json.dumps(user_prompt)
+        json_string_user_prompt = minify_string(s)
 
         messages = [
             {"role": "system", "content": self.get_system_content()},
-            {"role": "user", "content": user_prompt}
+            {"role": "user", "content": json_string_user_prompt}
         ]
         completion = openai.ChatCompletion.create(
             model=global_config.MODEL,
@@ -54,8 +56,8 @@ class Worker:
             conn = sqlite3.connect(global_config.DB_NAME)
             cursor = conn.cursor()
             cursor.execute(
-                "INSERT INTO messages (user_name, message) VALUES (?, ?)",
-                (data['current_user'], message)
+                "INSERT INTO messages (user_name, message, reply_to_user, reply_to_message) VALUES (?, ?, ?, ?)",
+                (data['current_user'], message, user_prompt["reply_to_user"], user_prompt["reply_to_message"])
             )
             conn.commit()
         except Exception as e:

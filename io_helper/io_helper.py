@@ -33,6 +33,8 @@ def create_messages_table():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_name TEXT NOT NULL,
         message TEXT NOT NULL,
+        reply_to_user TEXT,
+        reply_to_message TEXT,
         timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
     )
     ''')

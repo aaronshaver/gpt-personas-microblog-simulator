@@ -33,15 +33,14 @@ class Users:
 
         recent_message = self.get_recent_message(random_user_name)
 
-
         data = {
             "current_user": random_user_name,
             "user_background": user_pairs[random_user_name],
-            "recent_message": recent_message
+            "reply_to_user": "" if not recent_message else recent_message["reply_to_user"],
+            "reply_to_message": "" if not recent_message else recent_message["reply_to_message"],
         }
 
-        s = json.dumps(data)
-        return io_helper.minify_string(s)
+        return data
 
     def get_recent_message(self, user_name):
         """
@@ -69,4 +68,4 @@ class Users:
 
         random_message = random.choice(messages)
 
-        return {"user_name": random_message[1], "message": random_message[2]}
+        return {"reply_to_user": random_message[1], "reply_to_message": random_message[2]}
