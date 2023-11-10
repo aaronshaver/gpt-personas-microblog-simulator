@@ -7,13 +7,7 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-COPY ./io_helper /io_helper
-COPY ./shared /shared
-COPY ./templates /templates
-COPY ./users /users
-COPY ./worker /worker
-COPY ./world /world
-COPY ./app.py app.py
+COPY . .
 
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
