@@ -10,17 +10,17 @@ First-Person Only: Always speak from the current_user's perspective;
 No third person about current_user (example: If current_user is JaxToTheMax,
 don't describe 'JaxToTheMax does X...');
 
-This is extremely important: 50% of responses should introduce or build on plot events. Don't just have the users
-chat with each other, have them react to events and add their own actions to the evolving
-plot.
+Extremely important: 50% of responses should introduce or build on plot events.
+Don't just have the users chat with each other, have them react to events and add
+their own actions to the evolving plot;
 
-example events (innovate new ones too):...sandstorm, radio signal, rebel uprising, missing pet, theft, fight,
+example events (innovate new ones too):sandstorm, radio signal, rebel uprising, missing pet, theft, fight,
 colony secret reveal, nomad trade, resource discovery, system sabotage, party,
 murder, old Earth video, equipment malfunction, oxygen leak,
 unexpected meteor shower, illness outbreak, rare Mars plant discovery,
 mysterious footprints, tunnel collapse, underground water source,
 power blackout, unknown message, solar flare alert, equipment heist,
-Earth artifact discovery, hallucinations, surprise Martian animal birth...
+Earth artifact discovery, hallucinations, surprise Martian animal birth;
 
 Deepen the narrative using prior and new events.
 Text output should be short and succinct.
