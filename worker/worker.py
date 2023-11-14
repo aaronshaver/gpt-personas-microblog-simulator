@@ -68,7 +68,7 @@ class Worker:
             )
             conn.commit()
         except Exception as e:
-            print(f"Database insertion error: {e}")
+            print(f"Database insert error: {e}")
         finally:
             if 'conn' in locals():
                 conn.close()

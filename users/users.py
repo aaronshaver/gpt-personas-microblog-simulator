@@ -54,15 +54,21 @@ class Users:
         if random.random() < global_config.REPLY_CHANCE:
             return ""
 
-        conn = sqlite3.connect(global_config.DB_NAME)
-        cursor = conn.cursor()
-        cursor.execute(
-            "SELECT * FROM messages WHERE user_name != ? ORDER BY timestamp DESC LIMIT 10", (user_name,))
         messages = []
-        for row in cursor.fetchall():
-            messages.append(row)
-        if not messages:
-            return ""
+        try:
+            conn = sqlite3.connect(global_config.DB_NAME)
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT * FROM messages WHERE user_name != ? ORDER BY timestamp DESC LIMIT 10", (user_name,))
+            for row in cursor.fetchall():
+                messages.append(row)
+            if not messages:
+                return ""
+        except Exception as e:
+            print(f"Database select error: {e}")
+        finally:
+            if 'conn' in locals():
+                conn.close()
 
         random_message = random.choice(messages)
 
