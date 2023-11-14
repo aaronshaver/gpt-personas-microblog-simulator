@@ -17,7 +17,7 @@
             margin-top: 20px;
         }
         th, td {
-            padding: 10px;
+            padding: 20px;
             border: 0px;
         }
         th {
@@ -32,11 +32,22 @@
             vertical-align: middle;
             margin-right: 10px;
         }
+        .user-details {
+            display: flex;
+            align-items: center;
+            white-space: nowrap; /* Prevent line break */
+        }
+        .user-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
         .message-content {
             text-align: left;
         }
         .reply-indent {
             margin-left: 20px;
+            margin-top: 5px;
             font-size: 0.9em;
             color: #555;
         }
@@ -44,21 +55,18 @@
 </head>
 <body>
     <table>
-        <thead>
-            <tr>
-                <th>User Name</th>
-                <th>Message</th>
-            </tr>
-        </thead>
         <tbody>
             {% for message in messages %}
             <tr>
-                <td><span class="user-icon"></span>{{ message.user_name }}</td>
+                <td class="user-details">
+                    <span class="user-icon" style="background-color: {{ message.user_name_color }}"></span>
+                    <span class="user-name">{{ message.user_name }}</span>
+                </td>
                 <td class="message-content">
                     {{ message.message }}
                     {% if message.reply_to_user and message.reply_to_message %}
                     <div class="reply-indent">
-                        <strong>{{ message.reply_to_user }}:</strong>
+                        <strong>{{ message.reply_to_user }}</strong>
                         {{ message.reply_to_message }}
                     </div>
                     {% endif %}
