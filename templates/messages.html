@@ -1,26 +1,68 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Messages</title>
+    <meta charset="UTF-8">
+    <title>GPT Personas Microblog Simulator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 800px;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 0px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .user-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .message-content {
+            text-align: left;
+        }
+        .reply-indent {
+            margin-left: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-    <table border="1">
+    <table>
         <thead>
             <tr>
-                <th>Timestamp</th>
                 <th>User Name</th>
                 <th>Message</th>
-                <th>Reply to user</th>
-                <th>Reply to message</th>
             </tr>
         </thead>
         <tbody>
             {% for message in messages %}
             <tr>
-                <td>{{ message.timestamp }}</td>
-                <td>{{ message.user_name }}</td>
-                <td>{{ message.message }}</td>
-                <td>{{ message.reply_to_user }}</td>
-                <td>{{ message.reply_to_message }}</td>
+                <td><span class="user-icon"></span>{{ message.user_name }}</td>
+                <td class="message-content">
+                    {{ message.message }}
+                    {% if message.reply_to_user and message.reply_to_message %}
+                    <div class="reply-indent">
+                        <strong>{{ message.reply_to_user }}:</strong>
+                        {{ message.reply_to_message }}
+                    </div>
+                    {% endif %}
+                </td>
             </tr>
             {% endfor %}
         </tbody>
