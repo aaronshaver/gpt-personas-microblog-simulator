@@ -40,6 +40,15 @@ class Users:
         }
         return data
 
+    def should_not_reply(self):
+        """
+        do not return a message if we are over the reply_chance threshold
+        example: if random number is 0.8555, and our reply_chance is 0.2, we
+        don't do a reply; so only values 0 to 0.1999... will initiate reply
+        """
+        if random.random() > global_config.REPLY_CHANCE:
+            return True
+
     def get_recent_message(self, user_name):
         """
         grabs a recent message from storage that does not match the current (i.e.
@@ -50,8 +59,7 @@ class Users:
         Returns:
         JSON string if message available, or empty string otherwise
         """
-        # do not return a message if we can't meet the chance-to-reply threshold
-        if random.random() < global_config.REPLY_CHANCE:
+        if self.should_not_reply():
             return ""
 
         messages = []
