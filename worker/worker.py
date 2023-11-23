@@ -59,16 +59,16 @@ class Worker:
 
         # write message to storage
         try:
-            conn = sqlite3.connect(global_config.DB_NAME)
-            cursor = conn.cursor()
+            connection = sqlite3.connect(global_config.DB_NAME)
+            cursor = connection.cursor()
             cursor.execute(
                 "INSERT INTO messages (user_name, message, reply_to_user, reply_to_message) VALUES (?, ?, ?, ?)",
                 (user_prompt['current_user'], message,
                  user_prompt["reply_to_user"], user_prompt["reply_to_message"])
             )
-            conn.commit()
+            connection.commit()
         except Exception as e:
             print(f"Database insert error: {e}")
         finally:
             if 'conn' in locals():
-                conn.close()
+                connection.close()

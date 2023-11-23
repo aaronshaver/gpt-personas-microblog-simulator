@@ -16,14 +16,14 @@ def string_to_html_color(s):
 
 @app.route('/')
 def index():
-    conn = sqlite3.connect(global_config.DB_NAME)
-    cursor = conn.cursor()
-
-    # fetch messages from the database
+    connection = sqlite3.connect(global_config.DB_NAME)
+    cursor = connection.cursor()
     cursor.execute("SELECT * FROM messages ORDER BY timestamp DESC")
+    # get a list of messages, where each message is a dictionary, and in each
+    # dictionary, keys are table column names like 'user_name'
     messages = [dict(zip([column[0] for column in cursor.description], row))
                 for row in cursor.fetchall()]
-    conn.close()
+    connection.close()
 
     # add a consistent hash HTML color for each username in list of messages
     for message in messages:
@@ -48,18 +48,18 @@ def admin():
         current_user = request.form['username']
         message = request.form['message']
 
+        connection = sqlite3.connect(global_config.DB_NAME)
+        cursor = connection.cursor()
         try:
-            conn = sqlite3.connect(global_config.DB_NAME)
-            cursor = conn.cursor()
             cursor.execute(
                 "INSERT INTO messages (user_name, message, reply_to_user, reply_to_message) VALUES (?, ?, ?, ?)",
                 (current_user, message, '', '')
             )
-            conn.commit()
+            connection.commit()
         except Exception as e:
             print(f"Database insert error: {e}")
         finally:
-            conn.close()
+            connection.close()
 
         return redirect(url_for('admin'))
 

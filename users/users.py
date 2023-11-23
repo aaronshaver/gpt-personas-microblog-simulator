@@ -64,8 +64,8 @@ class Users:
 
         messages = []
         try:
-            conn = sqlite3.connect(global_config.DB_NAME)
-            cursor = conn.cursor()
+            connection = sqlite3.connect(global_config.DB_NAME)
+            cursor = connection.cursor()
             cursor.execute(
                 "SELECT * FROM messages WHERE user_name != ? ORDER BY timestamp DESC LIMIT 20", (user_name,))
             for row in cursor.fetchall():
@@ -76,7 +76,7 @@ class Users:
             print(f"Database select error: {e}")
         finally:
             if 'conn' in locals():
-                conn.close()
+                connection.close()
 
         random_message = random.choice(messages)
 
