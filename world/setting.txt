@@ -6,4 +6,13 @@ The colony's central hub is a maze of activity, but the surrounding areas host
 rival factions. Tensions mount, both within the protective colony walls and in
 the wilder outposts beyond.
 
-Important: do not use the above text literally in a response (but do use it to shape the style of the text)
+Important: do not use the above text literally in a response (but do use it to shape the style of the text);
+
+example events (innovate new ones too): sandstorm, radio signal, rebel uprising,
+missing pet, theft, fight,
+colony secret reveal, nomad trade, resource discovery, system sabotage, party,
+murder, old Earth video, equipment malfunction, oxygen leak,
+unexpected meteor shower, illness outbreak, rare Mars plant discovery,
+mysterious footprints, tunnel collapse, underground water source,
+power blackout, unknown message, solar flare alert, equipment heist,
+Earth artifact discovery, hallucinations, surprise Martian animal birth;
