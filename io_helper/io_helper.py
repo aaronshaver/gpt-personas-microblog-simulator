@@ -1,5 +1,6 @@
 import re
-from io_helper.database import Database
+from shared import global_config
+import sqlite3
 
 
 def file_to_string(path):
@@ -24,9 +25,8 @@ def minify_string(s):
     return s
 
 def create_messages_table():
-    db = Database()
-    cursor = db.get_cursor()
-    connection = db.get_connection()
+    conn = sqlite3.connect(global_config.DB_NAME)
+    cursor = conn.cursor()
 
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS messages (
@@ -43,4 +43,5 @@ def create_messages_table():
     CREATE INDEX IF NOT EXISTS idx_timestamp ON messages (timestamp DESC)
     ''')
 
-    connection.commit()
+    conn.commit()
+    conn.close()

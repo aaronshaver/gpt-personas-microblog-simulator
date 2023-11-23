@@ -1,11 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
+from shared import global_config
 import hashlib
-from io_helper.database import Database
 
 app = Flask(__name__)
-db = Database()
-cursor = db.get_cursor()
-connection = db.get_connection()
 
 
 def string_to_html_color(s):
@@ -18,13 +16,14 @@ def string_to_html_color(s):
 
 @app.route('/')
 def index():
-    db = Database()
-    cursor = db.get_cursor()
+    conn = sqlite3.connect(global_config.DB_NAME)
+    cursor = conn.cursor()
+
+    # fetch messages from the database
     cursor.execute("SELECT * FROM messages ORDER BY timestamp DESC")
-    # get a list of messages, where each message is a dictionary where the dict
-    # keys are table columns
     messages = [dict(zip([column[0] for column in cursor.description], row))
                 for row in cursor.fetchall()]
+    conn.close()
 
     # add a consistent hash HTML color for each username in list of messages
     for message in messages:
@@ -50,13 +49,17 @@ def admin():
         message = request.form['message']
 
         try:
+            conn = sqlite3.connect(global_config.DB_NAME)
+            cursor = conn.cursor()
             cursor.execute(
                 "INSERT INTO messages (user_name, message, reply_to_user, reply_to_message) VALUES (?, ?, ?, ?)",
                 (current_user, message, '', '')
             )
-            connection.commit()
+            conn.commit()
         except Exception as e:
             print(f"Database insert error: {e}")
+        finally:
+            conn.close()
 
         return redirect(url_for('admin'))
 
