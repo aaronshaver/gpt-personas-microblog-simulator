@@ -1,12 +1,15 @@
 import os
 import io_helper.io_helper as io_helper
+from io_helper.database import Database
 import random
-import sqlite3
 from shared import global_config
 
 
 class Users:
     def __init__(self, path=None):
+        db = Database()
+        self.cursor = db.get_cursor()
+
         self.path = path
         if path is None:
             self.path = "../world/users/"
@@ -24,7 +27,8 @@ class Users:
         for file_name in file_names:
             user_name = file_name.split('.')[0]
             user_background = io_helper.file_to_string(
-                os.path.join(users_dir, file_name))
+                os.path.join(users_dir, file_name)
+            )
 
             user_pairs[user_name] = user_background
 
@@ -64,19 +68,14 @@ class Users:
 
         messages = []
         try:
-            conn = sqlite3.connect(global_config.DB_NAME)
-            cursor = conn.cursor()
-            cursor.execute(
+            self.cursor.execute(
                 "SELECT * FROM messages WHERE user_name != ? ORDER BY timestamp DESC LIMIT 20", (user_name,))
-            for row in cursor.fetchall():
+            for row in self.cursor.fetchall():
                 messages.append(row)
             if not messages:
                 return ""
         except Exception as e:
             print(f"Database select error: {e}")
-        finally:
-            if 'conn' in locals():
-                conn.close()
 
         random_message = random.choice(messages)
 

@@ -2,12 +2,16 @@ from openai import OpenAI
 from io_helper.io_helper import file_to_string, minify_string
 from shared import global_config
 from users.users import Users
-import sqlite3
 import json
+from io_helper.database import Database
 
 
 class Worker:
     def __init__(self):
+        db = Database()
+        self.cursor = db.get_cursor()
+        self.connection = db.get_connection()
+
         self.client = OpenAI(api_key=global_config.OPENAI_API_KEY)
         self.users = Users()
 
@@ -59,16 +63,11 @@ class Worker:
 
         # write message to storage
         try:
-            conn = sqlite3.connect(global_config.DB_NAME)
-            cursor = conn.cursor()
-            cursor.execute(
+            self.cursor.execute(
                 "INSERT INTO messages (user_name, message, reply_to_user, reply_to_message) VALUES (?, ?, ?, ?)",
                 (user_prompt['current_user'], message,
                  user_prompt["reply_to_user"], user_prompt["reply_to_message"])
             )
-            conn.commit()
+            self.connection.commit()
         except Exception as e:
             print(f"Database insert error: {e}")
-        finally:
-            if 'conn' in locals():
-                conn.close()
