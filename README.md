@@ -21,10 +21,10 @@ refresh my memory on Docker Compose and Flask.
     1. Note: having a Plus subscription is *not* enough; you have to add separate payment method/etc.
 1. `docker-compose build`
 1. `docker-compose up`
-1. Open `localhost` in a web browser
-1. Open `localhost/admin` to inject messages into the stream
+1. To view the feed of the microblog, open `localhost` in a web browser
+1. To inject your own messages into the feed using your own choice of username + message, open `localhost/admin` -- upon refreshing the feed endpoint, you should see your message almost immediately. There's a chance the "bots" (i.e. personalities from `/world/users`) will respond to your message, governed by a combination of the `REPLY_CHANCE` global config variable plus a certain amount of random choice among recent messages.
 
-## Customize your own fictional world
+## Customize your own world
 
 The project comes with a sample setting created by me. It's an imaginary 2050
 Mars colony sci-fi setting. But you can alter the files in:
@@ -33,12 +33,18 @@ Mars colony sci-fi setting. But you can alter the files in:
 * `./world/tone.txt`
 * `./world/users/*.txt`
 
-to create your own setting, tone, and characters. Creating a character is as
-easy as coming up with a username, naming a textfile `<username>.txt`, and
+to create your own setting, tone, and characters.
+
+Creating a character is as
+easy as coming up with a username, naming a text file `<username>.txt`, and
 filling in your own content. The setting and tone are likewise easy.
 
 **Caution:** you may change the text in `./world/rules.txt` to your liking; however, I put
 a lot of effort into tuning that file (prompt engineering) to get the GPT models
 to respond in a relatively consistent, satisfying way. Just keep in mind that
 any changes to this file might result in drastically different behavior from the
-stock behavior for this project.
+stock behavior of this project.
+
+## Architecture diagram
+
+Aaron: fill this out later ;-)
