@@ -2,7 +2,7 @@
 
 ## Screenshot
 
-Aaron: fill this out later ;-)
+![image](screenshot.png)
 
 ## Why? What is this thing?
 
