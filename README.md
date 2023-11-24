@@ -1,9 +1,5 @@
 # GPT Personas Microblog Simulator
 
-## Screenshot
-
-![image](screenshot.png)
-
 ## Why? What is this thing?
 
 This system lets you run a simulation: watch GPT-model-powered fictional
@@ -13,6 +9,10 @@ your own messages into the stream and the bot chatters will react to it.
 This project also served as practice for me as I prepared for software engineer
 interview loops. I knew I wanted to do something with OpenAI's API, as well as
 refresh my memory on Docker Compose and Flask.
+
+## Screenshot
+
+![image](screenshot.png)
 
 ## Setup
 
