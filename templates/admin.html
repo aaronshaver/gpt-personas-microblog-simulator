@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Admin - GPT Personas Microblog Simulator</title>
     <style>
-        body {
+        .form-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             margin: 10px;
             padding: 10px;
+        }
+
+        body {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
     </style>
 </head>
+
 <body>
-    <form action="/admin" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username"><br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="form-container">
+        <p>Use this form to "inject" your own custom message into the microblog feed</p>
+        <form action="/admin" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username"><br><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
+
 </html>

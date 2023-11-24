@@ -8,7 +8,7 @@ class Model(Enum):
 
 
 # set your preferred OpenAI LLM model
-MODEL = Model.GPT_35_TURBO.value
+MODEL = Model.GPT_4.value
 
 # the percent chance the current user replies to a recent message
 REPLY_CHANCE = 0.75
