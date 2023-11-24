@@ -16,7 +16,7 @@ refresh my memory on Docker Compose and Flask.
 
 ## Setup
 
-1. Have Docker available on your system: https://docs.docker.com/get-docker/
+1. Get Docker ready on your system: https://docs.docker.com/get-docker/
 1. Get your OpenAI API key into an environment variable on your local system: https://platform.openai.com/docs/quickstart/step-2-setup-your-api-key
     1. Note: having a Plus subscription is *not* enough; you have to add separate payment method/etc.
 1. `docker-compose build`

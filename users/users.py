@@ -67,7 +67,9 @@ class Users:
             connection = sqlite3.connect(global_config.DB_NAME)
             cursor = connection.cursor()
             cursor.execute(
-                "SELECT * FROM messages WHERE user_name != ? ORDER BY timestamp DESC LIMIT 20", (user_name,))
+                "SELECT * FROM messages WHERE user_name != ? ORDER BY timestamp DESC LIMIT ?",
+                (user_name, global_config.RECENT_REPLIES_DEPTH)
+            )
             for row in cursor.fetchall():
                 messages.append(row)
             if not messages:

@@ -20,3 +20,8 @@ else:
 
 MAX_MESSAGES = 100
 SECONDS_BETWEEN_MESSAGES = 60
+
+# this is how far back the system will search when looking for a recent message
+# to respond to if/when it is attempting to generate a reply response (a user
+# at-mentioning another user and replying to the content of their message)
+RECENT_REPLIES_DEPTH = 20
