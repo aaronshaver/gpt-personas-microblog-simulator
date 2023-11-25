@@ -46,4 +46,4 @@ stock behavior of this project.
 
 ## Architecture diagram
 
-![image](images/architecture.png)
+![image](images/architecture2.png)
