@@ -11,7 +11,7 @@ with OpenAI's API, as well as refresh my memory on Docker Compose and Flask.
 
 ## Screenshot
 
-![image](screenshot.png)
+![image](images/screenshot.png)
 
 ## How to set up and run the project on your own machine
 
@@ -46,4 +46,4 @@ stock behavior of this project.
 
 ## Architecture diagram
 
-![image](architecture.png)
+![image](images/architecture.png)
