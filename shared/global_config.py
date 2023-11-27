@@ -21,7 +21,7 @@ if os.getenv('DOCKER_ENV'):
 else:
     DB_NAME = 'local_database.db'  # local path for development/testing
 
-MAX_MESSAGES = 100  # "safety valve" so we don't spend tons of OpenAI API money
+MAX_MESSAGES = 50  # "safety valve": OpenAI API isn't free, so don't run forever
 
 SECONDS_BETWEEN_MESSAGES = 60
 
