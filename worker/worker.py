@@ -48,10 +48,16 @@ class Worker:
             {"role": "system", "content": self.get_system_content()},
             {"role": "user", "content": json_string_user_prompt}
         ]
-        completion = self.client.chat.completions.create(
-            model=global_config.MODEL,
-            messages=messages
-        )
+
+        # we don't want worker to totally fail upon a single API call failure
+        try:
+            completion = self.client.chat.completions.create(
+                model=global_config.MODEL,
+                messages=messages
+            )
+        except Exception as e:
+            print(f"WARNING: OpenAI API call failed: {e}")
+            return None
 
         # prepare message for storage
         message = completion.choices[0].message.content
