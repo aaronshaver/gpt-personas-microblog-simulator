@@ -2,6 +2,8 @@
 
 ## Why? What is this thing?
 
+Video demo: https://www.youtube.com/watch?v=saQa2iPWB0s
+
 This system lets you run a simulation: watch GPT-model-powered fictional
 characters chat with each other on a Twitter-like microblog. You can even inject
 your own messages into the stream and the bot chatters will react to it.
